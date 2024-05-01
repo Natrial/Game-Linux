@@ -15,10 +15,6 @@
 
     <h1>Seleccione una ciudad:</h1>
 
-    {% if mensaje_error %}
-        <p style="color: red;">{{ mensaje_error }}</p>
-    {% endif %}
-
     <ul>
         {% for index in range(ciudades|length) %}
             {% set ciudad = ciudades[index] %}

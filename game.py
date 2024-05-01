@@ -101,11 +101,11 @@ class Game():
     def obtener_precio(self):
         producto = request.args.get('producto')
         # Aquí deberías obtener el precio del producto desde la ciudad u otra fuente de datos
-        #print(self.productos)
         for i in range(len(self.productos)):
+            precio = 0
             if self.productos[i]['name'] == producto:
                 precio = self.productos[i]['price']  # Debes implementar esta función
-        return str(precio)
+            return str(precio)
 
 
     def configure_routes(self):
