@@ -13,6 +13,15 @@
     Para comprar cualquier producto, introduce "c" y luego elige el número del producto y la cantidad a comprar.
     Para vender cualquier producto, introduce "v", elige el número del producto que se ofrece en la ciudad e indica la cantidad a vender.
     Para salir de la ciudad, escribe "pass".</p>
+	<button onclick="irACiudades()">Comenzar partida</button>
 
-</body>
+    <script>
+        function irACiudades() {
+            // Obtener la URL actual
+            var urlActual = window.location.href;
+            // Redirigir a la URL actual + /ciudades
+            window.location.href = urlActual + 'ciudades';
+        }
+    </script>
+
 </html>
