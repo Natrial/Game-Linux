@@ -78,7 +78,7 @@ class Game():
             return jsonify({'error': 'Internal Server Error'}), 500
 
     def mostrar_ciudades(self):
-        return render_template('prueba_ciudades.html', ciudades=self.ciudades)
+        return render_template('ciudades.html', ciudades=self.ciudades)
     
     def mostrar_instrucciones(self):
         return render_template('index.html')
@@ -93,9 +93,9 @@ class Game():
                 self.productos = self.ciudad.turno()
                 self.turn += 1
             
-                return render_template('prueba_productos.html', ciudad=self.ciudad.name, productos=self.productos
+                return render_template('productos.html', ciudad=self.ciudad.name, productos=self.productos
                                     , turno_actual=self.turn, monedas=self.jugador.monedas, inventario=self.jugador.productos) 
-            return render_template('prueba_ciudades.html', ciudades=self.ciudades)
+            return render_template('ciudades.html', ciudades=self.ciudades)
         return render_template('index.html')
     
     def obtener_precio(self):
