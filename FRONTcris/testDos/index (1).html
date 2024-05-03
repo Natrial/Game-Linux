@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú</title>
+    <link rel="stylesheet" href="menu.css">
+</head>
+<body>
+
+    <h1 class="title">Menú del Juego</h1>
+    <P class="text">Presiona Enter para continuar.
+    Para seleccionar una ciudad, elige el número que se indica a su izquierda y presiona Enter. Ten en cuenta que no podrás elegir la misma ciudad dos veces seguidas.
+    Para comprar cualquier producto, introduce "c" y luego elige el número del producto y la cantidad a comprar.
+    Para vender cualquier producto, introduce "v", elige el número del producto que se ofrece en la ciudad e indica la cantidad a vender.
+    Para salir de la ciudad, escribe "pass".</p>
+	<button onclick="irACiudades()">Comenzar partida</button>
+
+    <script>
+        function irACiudades() {
+            // Obtener la URL actual
+            var urlActual = window.location.href;
+            // Redirigir a la URL actual + /ciudades
+            window.location.href = urlActual + 'ciudades';
+        }
+    </script>
+</body>
+</html>
