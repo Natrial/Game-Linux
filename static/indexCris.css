@@ -1,0 +1,52 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background:
+        linear-gradient(rgba(195, 176, 145, 0.1), rgba(195, 176, 145, 0.3)),
+        url('store.jpg') center/cover no-repeat;
+    height: 100vh;
+    overflow: hidden;
+    /* Evita la barra de desplazamiento */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.h1 {
+    font-size: 3em;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.btn {
+    padding: 10px 20px;
+    font-size: 1.5em;
+    background-color: #8b4513;
+    color: #fff;
+    /* Letras blancas */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #654321;
+}
+
+.text {
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Fondo negro claro */
+    color: #fff;
+    /* Letras blancas */
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+}

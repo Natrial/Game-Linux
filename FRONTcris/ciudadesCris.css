@@ -1,0 +1,94 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background:
+        /* Imagen de fondo */
+        url('city.jpg') center/cover no-repeat;
+    /* Ajusta la imagen al centro y cubre todo el fondo */
+    overflow: hidden;
+    /* Evita la barra de desplazamiento */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.title,
+.subtitle,
+.city,
+.info {
+    font-size: 1em;
+    /* Reducir el tamaño de fuente para todos los elementos */
+    color: #fff;
+    /* Letras blancas */
+    background-color: rgba(0, 0, 0, 0.7);
+    /* Fondo negro con transparencia */
+    padding: 10px 20px;
+    border-radius: 20px;
+    /* Redondez de los fondos negros */
+    text-align: center;
+    margin: 10px;
+}
+
+.title,
+.subtitle,
+.info {
+    /* Establecer la opacidad del fondo a 0.9 */
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.title {
+    font-size: 2.5em;
+    /* Aumentar el tamaño del título */
+    margin-bottom: 10px;
+    /* Reducir el margen inferior */
+}
+
+.subtitle {
+    font-size: 1em;
+    /* Reducir el tamaño del subtítulo */
+    margin-bottom: 15px;
+    /* Reducir el margen inferior */
+}
+
+.city-list {
+    text-align: center;
+    max-height: calc(100vh - 250px);
+    /* Ajustar la altura máxima para evitar la barra de desplazamiento vertical */
+    overflow-y: auto;
+    /* Habilitar el desplazamiento vertical si es necesario */
+    display: flex;
+    /* Colocar la lista en horizontal */
+    justify-content: center;
+    /* Centrar los elementos horizontalmente */
+    flex-wrap: wrap;
+    /* Permitir que los elementos se envuelvan en varias líneas */
+}
+
+.city {
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    list-style: none;
+    /* Eliminar los puntos de la lista */
+    padding: 10px;
+    /* Ajustar el espacio entre elementos */
+    margin: 5px;
+    /* Agregar un pequeño margen entre elementos */
+}
+
+.city:hover {
+    background-color: #333;
+    /* Fondo negro más oscuro al hacer hover */
+}
+
+.info {
+    font-size: 0.9em;
+    /* Reducir el tamaño del mensaje informativo */
+    margin-top: 50px;
+    /* Ajustar el margen superior */
+}

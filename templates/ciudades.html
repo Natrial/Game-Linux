@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ciudades</title>
+    <link rel="stylesheet" href="/static/ciudadesCris.css">
+    <link rel="shortcut icon" href="/static/administracion-del-dinero.png">
     <script>
         function ciudadSeleccionada(index) {
             // Redirigir al usuario a la URL con el índice de la ciudad
@@ -13,7 +15,10 @@
 </head>
 <body>
 
-    <h1>Seleccione una ciudad:</h1>
+    <body>
+
+    <div class="container">
+    <h1 class="title">Seleccione una ciudad:</h1>
 
     <ul>
         {% for index in range(ciudades|length) %}
@@ -21,6 +26,8 @@
             <li><a href="#" onclick="ciudadSeleccionada('{{ index }}')">{{ ciudad.name }}</a></li>
         {% endfor %}
     </ul>
+    </div>
+</body>
 
 </body>
 </html>

@@ -21,9 +21,7 @@
     xhrPrecio.setRequestHeader("Content-Type", "application/json");
 
     xhrPrecio.onreadystatechange = function () {
-    if (xhrPrecio.readyState === 4 && xhrPrecio.status === 200) {
-        console.log(xhrPrecio.response)
-        if (xhrPrecio.response != "0") {
+        if (xhrPrecio.readyState === 4 && xhrPrecio.status === 200) {
             var precio = parseFloat(xhrPrecio.responseText);
             console.log('Nombre:', producto);
             console.log('Precio:', precio);
@@ -58,13 +56,10 @@
 
                 xhr.send(data);
             }
-        } else {
-            alert('Esta ciudad no está interesada en este producto.');
         }
-    }
-};
+    };
 
-xhrPrecio.send();
+    xhrPrecio.send();
 }
 
 </script>

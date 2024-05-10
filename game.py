@@ -91,6 +91,7 @@ class Game():
 
                 self.ciudad = self.ciudades[self.eleccion]
                 self.productos = self.ciudad.turno()
+                print('productos turno',self.productos)
                 self.turn += 1
             
                 return render_template('productos.html', ciudad=self.ciudad.name, productos=self.productos
@@ -101,8 +102,10 @@ class Game():
     def obtener_precio(self):
         producto = request.args.get('producto')
         # Aquí deberías obtener el precio del producto desde la ciudad u otra fuente de datos
+        print(self.productos)
         for i in range(len(self.productos)):
             precio = 0
+            print(self.productos[i]['name'] == producto)
             if self.productos[i]['name'] == producto:
                 precio = self.productos[i]['price']  # Debes implementar esta función
             return str(precio)

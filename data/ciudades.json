@@ -1,0 +1,10 @@
+{
+    "Srose":["Seda","Especias","Pergamino","Hierro","Madera"],
+    "Alosey":["Seda","Especias","Pergamino","Madera", "Cuero"],
+    "Redmery":["Seda","Especias","Pergamino","Cuero", "Hierro"],
+    "Blada":["Hierro","Madera","Cuero", "Especias", "Trigo"],
+    "Zita":["Hierro","Madera","Cuero", "Pergamino", "Sal"],
+    "Vlore":["Trigo","Sal","Arroz", "Hierro","Cuero"],
+    "Italas":["Trigo","Sal","Arroz", "Madera", "Hierro"],
+    "Sine":["Trigo","Sal","Arroz", "Cuero", "Madera"]
+}
