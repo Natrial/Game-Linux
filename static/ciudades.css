@@ -70,6 +70,12 @@ body {
     /* Permitir que los elementos se envuelvan en varias líneas */
 }
 
+/* Estilos para cada ciudad en la lista */
+.city-list li a {
+    font-size: 4.5em;
+    /* Tamaño de fuente más grande */
+}
+
 .city {
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
