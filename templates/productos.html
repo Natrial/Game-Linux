@@ -5,35 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Productos de la Ciudad</title>
     
-    <link rel="stylesheet" href="/static/products.css">
+    <!-- <link rel="stylesheet" href="/static/products.css"> -->
     <link rel="shortcut icon" href="/static/administracion-del-dinero.png">
 </head>
 <body>
-
-    <h1>Productos de {{ ciudad }} - Turno: {{ turno_actual }}</h1>
-
-    <div style="display: flex; justify-content: space-between;">
-        <div>
-            <!-- Placeholder for productos_partial.html -->
-            <ul id="productos-section">
-                {% include 'productos_partial.html' %}
-            </ul>
-        </div>
-        <div>
-            <h2>Inventario</h2>
-            
-            <div>
-                <p id="monedas">Monedas: {{ monedas }}</p>
+    <div class="container">
+        <h1 class="title">Productos de {{ ciudad }} - Turno: {{ turno_actual }}</h1>
+        <div class="content">
+            <div class="product-list">
+                <!-- Placeholder for productos_partial.html -->
+                <ul id="productos-section">
+                    {% include 'productos_partial.html' %}
+                </ul>
             </div>
-            <!-- Placeholder for inventario_partial.html -->
-            <ul id="inventario-section">
-                {% include 'inventario_partial.html' %}
-            </ul>
-            
-            <button onclick="location.reload()">Terminar turno</button>
-            
+            <div class="inventario-container">
+                <h2 class="title">Inventario</h2>
+                <div class="inventario-info">
+                    <p id="monedas">Monedas: {{ monedas }}</p>
+                </div>
+                <!-- Placeholder for inventario_partial.html -->
+                <ul id="inventario-section">
+                    {% include 'inventario_partial.html' %}
+                </ul>
+                <button class="end-turn-btn" onclick="location.reload()">Terminar turno</button>
+            </div>
         </div>
-        
     </div>
 
     <script>

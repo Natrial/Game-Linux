@@ -20,12 +20,16 @@
     <div class="container">
     <h1 class="title">Seleccione una ciudad:</h1>
 
-    <ul>
-        {% for index in range(ciudades|length) %}
-            {% set ciudad = ciudades[index] %}
-            <li><a href="#" onclick="ciudadSeleccionada('{{ index }}')">{{ ciudad.name }}</a></li>
-        {% endfor %}
-    </ul>
+     <div class="city-list">
+        <ul>
+            {% for index in range(ciudades|length) %}
+                {% set ciudad = ciudades[index] %}
+                <li class="city">
+                    <a href="#" onclick="ciudadSeleccionada('{{ index }}')">{{ ciudad.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
     </div>
 </body>
 

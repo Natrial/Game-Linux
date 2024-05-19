@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report</title>
+    
+    <link rel="shortcut icon" href="/static/administracion-del-dinero.png">
+</head>
+<body>
+
+    <body>
+
+    <div class="container">
+    <h1 class="title">Resumen:</h1>
+
+    <div class="mejor-accion">
+        <h2>Mejor Acción Realizada</h2>
+        <p>Descripción detallada de la mejor acción realizada en el juego. Esta acción se destaca por ser la más impresionante o efectiva.</p>
+    </div>
+
+    <div class="resumen">
+        <h2>Acciones Realizadas</h2>
+        <div class="acciones">
+            <ul>
+                {% for item in informe %}
+                    <li>
+                        <strong>Informe {{ loop.index }}:</strong>
+                        <ul>
+                            {% for key, value in item.items() %}
+                                <li>{{ key }}: {{ value }}</li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    
+    </div>
+</body>
+
+</body>
+</html>

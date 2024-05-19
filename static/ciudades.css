@@ -72,8 +72,9 @@ body {
 
 /* Estilos para cada ciudad en la lista */
 .city-list li a {
-    font-size: 4.5em;
+    font-size: 3em;
     /* Tamaño de fuente más grande */
+    color: white;
 }
 
 .city {

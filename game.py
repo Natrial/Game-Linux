@@ -1,8 +1,6 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect, url_for
 from data import Data
 from jugador import Jugador
-from pantalla import Pantalla
-from errores import Errores
 
 app = Flask(__name__)
 
@@ -10,14 +8,12 @@ class Game():
     def __init__(self, app):
         """constructor"""
         self.turn = 0
-        self.ciudades = Data().ciudades
-        #ciudad recoge la ciudad donde esta el jugador
+        self.dataConexion = Data()
+        self.ciudades = self.dataConexion.ciudades
         self.ciudad = None
         self.productos = None
         self.eleccion = None
         self.jugador = Jugador()
-        self.pantalla = Pantalla()
-        self.error = Errores()
         self.app = app
 
         # Configurar rutas Flask
@@ -26,17 +22,11 @@ class Game():
     def comprar(self):
         try:
             data = request.get_json()
-
-            # Extract data from the JSON payload
             producto = data.get('producto')
             cantidad = int(data.get('cantidad'))
             precio = float(data.get('precio'))
-
-            # Invoke your Python method with the data
             self.jugador.comprar(precio, cantidad, producto)
 
-
-            # Return the updated data as a JSON response
             response_data = {
                 'productos': render_template('productos_partial.html', productos=self.productos),
                 'monedas': self.jugador.monedas,
@@ -46,7 +36,6 @@ class Game():
             return jsonify(response_data)
 
         except Exception as e:
-            # Log the exception details
             print('Exception in /comprar:', str(e))
             return jsonify({'error': 'Internal Server Error'}), 500
         
@@ -54,16 +43,11 @@ class Game():
     def vender(self):
         try:
             data = request.get_json()
-
-            # Extract data from the JSON payload
             producto = data.get('producto')
             cantidad = int(data.get('cantidad'))
             precio = float(data.get('precio'))
-
-            # Invoke your Python method with the data
             self.jugador.vender(precio, cantidad, producto)
 
-            # Return the updated data as a JSON response
             response_data = {
                 'productos': render_template('productos_partial.html', productos=self.productos),
                 'monedas': self.jugador.monedas,
@@ -73,7 +57,6 @@ class Game():
             return jsonify(response_data)
 
         except Exception as e:
-            # Log the exception details
             print('Exception in /vender:', str(e))
             return jsonify({'error': 'Internal Server Error'}), 500
 
@@ -85,31 +68,32 @@ class Game():
     
     def mostrar_productos_ciudad(self, ciudad_posicion):
         # Accede a la ciudad usando el índice
-        while self.turn <30:
+        while self.turn <5:
             if self.eleccion != ciudad_posicion:
                 self.eleccion = ciudad_posicion
 
                 self.ciudad = self.ciudades[self.eleccion]
                 self.productos = self.ciudad.turno()
-                print('productos turno',self.productos)
                 self.turn += 1
             
                 return render_template('productos.html', ciudad=self.ciudad.name, productos=self.productos
                                     , turno_actual=self.turn, monedas=self.jugador.monedas, inventario=self.jugador.productos) 
             return render_template('ciudades.html', ciudades=self.ciudades)
-        return render_template('index.html')
+        self.turn = 0
+        return redirect(url_for('report'))
     
     def obtener_precio(self):
         producto = request.args.get('producto')
-        # Aquí deberías obtener el precio del producto desde la ciudad u otra fuente de datos
-        print(self.productos)
-        for i in range(len(self.productos)):
-            precio = 0
-            print(self.productos[i]['name'] == producto)
-            if self.productos[i]['name'] == producto:
-                precio = self.productos[i]['price']  # Debes implementar esta función
-            return str(precio)
 
+        if self.productos:
+            for item in self.productos:
+                if item['name'] == producto:
+                    return str(item['price'])
+        return '0'
+    
+    def report(self):
+        informe = self.dataConexion.read_informe()
+        return render_template('report.html', informe=informe)
 
     def configure_routes(self):
         # Ruta de Flask para mostrar instrucciones
@@ -141,5 +125,8 @@ class Game():
         def obtener_precio_route():
             return self.obtener_precio()
 
+        @self.app.route("/report")
+        def report():
+            return self.report()
 
 
