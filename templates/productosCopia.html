@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos de la Ciudad</title>
+    <link rel="stylesheet" href="products.css">
+    <link rel="shortcut icon" href="/static/administracion-del-dinero.png">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header-container">
+            <h1>Productos de Italas - Turno: 9</h1>
+        </div>
+
+        <div class="main-content">
+            <div class="product-list">
+                <!-- Placeholder for productos_partial.html -->
+                <ul id="productos-section">
+                    <!-- productos_partial.html -->
+
+                    <li>
+                        Trigo - Precio: $34 - Rango: None
+                        <button onclick="comprar('Trigo','34','1118.0')">Comprar</button>
+                    </li>
+
+                    <li>
+                        Sal - Precio: $12 - Rango: DOWN
+                        <button onclick="comprar('Sal','12','1118.0')">Comprar</button>
+                    </li>
+
+                    <li>
+                        Arroz - Precio: $8 - Rango: DOWN
+                        <button onclick="comprar('Arroz','8','1118.0')">Comprar</button>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="inventario-container">
+                <h2 class="title">Inventario</h2>
+                <div class="inventario-info">
+                    <p id="monedas">Monedas: 1064</p>
+                </div>
+                <!-- Placeholder for inventario_partial.html -->
+                <ul id="inventario-section">
+                    <!-- inventario_partial.html -->
+
+                    <li>
+                        Madera - Precio: $250 - Cantidad: 2
+                        <button data-nombre="Madera" data-cantidad="2" onclick="vender(this)">Vender</button>
+                    </li>
+
+                    <li>
+                        Cuero - Precio: $318.0 - Cantidad: 1
+                        <button data-nombre="Cuero" data-cantidad="1" onclick="vender(this)">Vender</button>
+                    </li>
+
+                    <li>
+                        Sal - Precio: $20 - Cantidad: 2
+                        <button data-nombre="Sal" data-cantidad="2" onclick="vender(this)">Vender</button>
+                    </li>
+
+                    <li>
+                        Arroz - Precio: $6 - Cantidad: 2
+                        <button data-nombre="Arroz" data-cantidad="2" onclick="vender(this)">Vender</button>
+                    </li>
+
+                    <li>
+                        Trigo - Precio: $33 - Cantidad: 2
+                        <button data-nombre="Trigo" data-cantidad="2" onclick="vender(this)">Vender</button>
+                    </li>
+
+                </ul>
+                <button class="end-turn-btn" onclick="location.reload()">Terminar turno</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to update the monedas section
+        function updateMonedas(monedas) {
+            document.getElementById('monedas').innerHTML = 'Monedas: ' + monedas;
+        }
+
+        // Function to update the inventario section
+        function updateInventario(inventarioHTML) {
+            document.getElementById('inventario-section').innerHTML = inventarioHTML;
+        }
+
+        // Modify comprar function to update the page after a successful purchase
+        function comprar(producto, precio, monedas) {
+            var cantidad = prompt('Ingrese la cantidad a comprar de ' + producto + ':', '1');
+            if (cantidad === null || isNaN(cantidad) || cantidad * precio > monedas) {
+                alert('Operación de compra cancelada o cantidad no válida.' + cantidad * precio + " " + monedas);
+            } else {
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "/comprar", true);
+                xhr.setRequestHeader("Content-Type", "application/json");
+
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        var responseData = JSON.parse(xhr.responseText);
+                        // Update the relevant parts of the page
+                        updateMonedas(responseData.monedas);
+                        updateInventario(responseData.inventario);
+                    }
+                };
+
+                var data = JSON.stringify({
+                    producto: producto,
+                    cantidad: cantidad,
+                    precio: precio
+                });
+
+                xhr.send(data);
+            }
+        }
+    </script>
+
+</body>
+
+</html>
