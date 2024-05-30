@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos de la Ciudad</title>
+    
+    <link rel="stylesheet" href="/static/products.css">
+    <link rel="shortcut icon" href="/static/administracion-del-dinero.png">
+  <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-content {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .product-list {
+            flex: 1;
+            margin-right: 20px;
+        }
+
+        .inventario-container {
+            flex: 1;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-container">
+            <h1>Productos de {{ ciudad }} - Turno: {{ turno_actual }}</h1>
+        </div>
+        <div class="main-content">
+            <div class="product-list">
+                <!-- Placeholder for productos_partial.html -->
+                <ul id="productos-section">
+                    {% include 'productos_partial.html' %}
+                </ul>
+            </div>
+            <div class="inventario-container">
+                <h2 class="title">Inventario</h2>
+                <div class="inventario-info">
+                    <p id="monedas">Monedas: {{ monedas }}</p>
+                </div>
+                <!-- Placeholder for inventario_partial.html -->
+                <ul id="inventario-section">
+                    {% include 'inventario_partial.html' %}
+                </ul>
+                <button class="end-turn-btn" onclick="location.reload()">Terminar turno</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Function to update the monedas section
+        function updateMonedas(monedas) {
+            document.getElementById('monedas').innerHTML = 'Monedas: ' + monedas;
+        }
+
+        // Function to update the inventario section
+        function updateInventario(inventarioHTML) {
+            document.getElementById('inventario-section').innerHTML = inventarioHTML;
+        }
+
+        // Modify comprar function to update the page after a successful purchase
+        function comprar(producto, precio, monedas) {
+            var cantidad = prompt('Ingrese la cantidad a comprar de ' + producto + ':', '1');
+            if (cantidad === null || isNaN(cantidad) || cantidad * precio > monedas) {
+                alert('Operación de compra cancelada o cantidad no válida.' + cantidad * precio + " "+ monedas);
+            } else {
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "/comprar", true);
+                xhr.setRequestHeader("Content-Type", "application/json");
+
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        var responseData = JSON.parse(xhr.responseText);
+                        // Update the relevant parts of the page
+                        updateMonedas(responseData.monedas);
+                        updateInventario(responseData.inventario);
+                    }
+                };
+
+                var data = JSON.stringify({
+                    producto: producto,
+                    cantidad: cantidad,
+                    precio: precio
+                });
+
+                xhr.send(data);
+            }
+        }
+    
+        
+    </script>
+    
+</body>
+</html>
