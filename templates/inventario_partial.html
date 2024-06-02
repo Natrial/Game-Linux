@@ -1,7 +1,7 @@
 <!-- inventario_partial.html -->
 {% for nombre, item in inventario.items() %}
     <li>
-        {{ nombre }} - Precio: ${{ item['precio'] }} - Cantidad: {{ item['cantidad'] }}
+        {{ nombre }} - Precio: {{ item['precio'] }}$ - Cantidad: {{ item['cantidad'] }}
         <!-- Llama a la función vender() con el botón actual como argumento -->
         <button data-nombre="{{ nombre }}" data-cantidad="{{ item['cantidad'] }}" onclick="vender(this)">Vender</button>
     </li>

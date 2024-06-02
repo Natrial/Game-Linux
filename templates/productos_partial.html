@@ -1,7 +1,7 @@
 <!-- productos_partial.html -->
 {% for producto in productos %}
     <li>
-        {{ producto.name }} - Precio: ${{ producto.price }} - Rango: {{ producto.range }}
+        {{ producto.name }} - Precio: {{ producto.price }}$ - Rango: {{ producto.range }}
         <button onclick="comprar('{{ producto.name }}','{{ producto.price }}','{{ monedas }}')">Comprar</button>
     </li>
 {% endfor %}

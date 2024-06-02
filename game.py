@@ -68,7 +68,7 @@ class Game():
     
     def mostrar_productos_ciudad(self, ciudad_posicion):
         # Accede a la ciudad usando el índice
-        while self.turn <5:
+        while self.turn <3:
             if self.eleccion != ciudad_posicion:
                 self.eleccion = ciudad_posicion
 
@@ -93,12 +93,21 @@ class Game():
     
     def report(self):
         informe = self.dataConexion.read_informe()
-        return render_template('report.html', informe=informe)
+        bestAction = self.jugador.mejor_accion()
+        return render_template('report.html', informe=informe, bestAction=bestAction)
+        
+    def reset_game(self):
+        self.turn = 0
+        self.ciudad = None
+        self.productos = None
+        self.eleccion = None
+        self.jugador = Jugador()
 
     def configure_routes(self):
         # Ruta de Flask para mostrar instrucciones
         @self.app.route('/')
         def mostrar_instrucciones_route():
+            self.reset_game()
             return self.mostrar_instrucciones()
         
         # Ruta de Flask para mostrar ciudades

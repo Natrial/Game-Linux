@@ -5,13 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Productos de la Ciudad</title>
     
-    <!-- <link rel="stylesheet" href="/static/products.css"> -->
+    <link rel="stylesheet" href="/static/products.css">
     <link rel="shortcut icon" href="/static/administracion-del-dinero.png">
+  <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-content {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .product-list {
+            flex: 1;
+            margin-right: 20px;
+        }
+
+        .inventario-container {
+            flex: 1;
+            margin-left: 20px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1 class="title">Productos de {{ ciudad }} - Turno: {{ turno_actual }}</h1>
-        <div class="content">
+        <div class="header-container">
+            <h1>Productos de {{ ciudad }} - Turno: {{ turno_actual }}</h1>
+        </div>
+        <div class="main-content">
             <div class="product-list">
                 <!-- Placeholder for productos_partial.html -->
                 <ul id="productos-section">
@@ -31,7 +54,6 @@
             </div>
         </div>
     </div>
-
     <script>
         // Function to update the monedas section
         function updateMonedas(monedas) {

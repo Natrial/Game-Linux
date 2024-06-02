@@ -15,30 +15,35 @@
     <h1 class="title">Resumen:</h1>
 
     <div class="mejor-accion">
-        <h2>Mejor Acción Realizada</h2>
-        <p>Descripción detallada de la mejor acción realizada en el juego. Esta acción se destaca por ser la más impresionante o efectiva.</p>
+        <h2>Mejor venta realizada</h2>
+        <p>La venta que más beneficio ha aportado ha sido, {{ bestAction.cantidad }} unidades de {{ bestAction.nombre }}, por un beneficio {{ bestAction.precio }}$/ud, que ha reportado un beneficio total de {{ bestAction.monedas }}$.</p>
     </div>
 
     <div class="resumen">
-        <h2>Acciones Realizadas</h2>
+        <h2>Informe de ventas</h2>
         <div class="acciones">
             <ul>
-                {% for item in informe %}
-                    <li>
-                        <strong>Informe {{ loop.index }}:</strong>
-                        <ul>
-                            {% for key, value in item.items() %}
-                                <li>{{ key }}: {{ value }}</li>
-                            {% endfor %}
-                        </ul>
-                    </li>
-                {% endfor %}
-            </ul>
+                    {% for item in informe %}
+                        <li>
+                            Ha vendido {{ item.cantidad }} unidades de {{ item.nombre }}, por un beneficio {{ item.precio }}$/ud, que ha reportado un beneficio total de {{ item.monedas }}$.
+                        </li>
+                    {% endfor %}
+                </ul>
         </div>
+        <button class="btn" onclick="terminar()">Terminar partida</button>
+    </div>
     </div>
 
     
     </div>
+    <script>
+        function terminar() {
+            // Obtener la URL actual
+            var urlActual = window.location.href;
+            // Redirigir a la URL actual + /ciudades
+            window.location.href = urlActual.substr(0,21) + '/';
+        }
+    </script>
 </body>
 
 </body>
