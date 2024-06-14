@@ -1,0 +1,64 @@
+body {
+    background-image:url('fin.jpg') center/cover no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: Arial, sans-serif;
+    color: white;
+}
+
+.container {
+    background-color: rgba(0, 0, 0, 0.7);
+    /* Fondo negro translúcido */
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+.title {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.mejor-accion,
+.resumen {
+    margin: 20px 0;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+p,
+li {
+    font-size: 1em;
+}
+
+.acciones ul {
+    list-style: none;
+    padding: 0;
+}
+
+.acciones li {
+    margin: 10px 0;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #87CEEB;
+    /* Azul cielo */
+    color: black;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #00BFFF;
+    /* Azul cielo más intenso al pasar el ratón */
+}

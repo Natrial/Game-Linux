@@ -6,7 +6,7 @@ class Jugador():
         """constructor con los datos iniciales"""
         #productos q se ofertan
         self.productos = {}
-        self.monedas = 2000
+        self.monedas = 5000
         """inicia el registro de acciones"""
         self.record = Record()
     

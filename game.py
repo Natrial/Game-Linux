@@ -68,7 +68,7 @@ class Game():
     
     def mostrar_productos_ciudad(self, ciudad_posicion):
         # Accede a la ciudad usando el índice
-        while self.turn <3:
+        while self.turn < 5:
             if self.eleccion != ciudad_posicion:
                 self.eleccion = ciudad_posicion
 
